@@ -1,4 +1,4 @@
-package com.everis.becakotlinmvvm
+package com.everis.becakotlinmvvm.model.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -6,9 +6,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitClient {
     companion object {
 
-        fun getRetrofitInstance(path : String) : Retrofit {
+        private const val BASE_URL = "https://date.nager.at/api/v2/"
+
+        fun getRetrofitInstance() : Retrofit {
             return Retrofit.Builder()
-                .baseUrl(path)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }

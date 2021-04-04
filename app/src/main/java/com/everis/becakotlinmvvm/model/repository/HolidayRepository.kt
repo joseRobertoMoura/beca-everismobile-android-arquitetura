@@ -1,7 +1,10 @@
-package com.everis.becakotlinmvvm
+package com.everis.becakotlinmvvm.model.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.everis.becakotlinmvvm.model.api.ApiInterface
+import com.everis.becakotlinmvvm.model.api.RetrofitClient
+import com.everis.becakotlinmvvm.model.HolidayModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,7 +16,7 @@ class HolidayRepository {
     fun fetchHolidays(): MutableLiveData<List<HolidayModel>> {
         val mutableList: MutableLiveData<List<HolidayModel>> = MutableLiveData()
 
-        val apiInterface = RetrofitClient.getRetrofitInstance("https://date.nager.at/api/v2/")
+        val apiInterface = RetrofitClient.getRetrofitInstance()
             .create(ApiInterface::class.java)
 
         apiInterface.getHolidays().enqueue(object : Callback<List<HolidayModel>> {
